@@ -1,0 +1,33 @@
+spring:
+  kafka:
+    consumer:
+      value-deserializer: "org.springframework.kafka.support.serializer.JsonDeserializer"
+      properties:
+        "[spring.json.value.default.type]": "edu.miu.paymentservice.entity.Payment"
+        "[spring.json.trusted.packages]": "edu.miu.paymentservice"
+    producer:
+      value-serializer: "org.springframework.kafka.support.serializer.JsonSerializer"
+      properties:
+        "[spring.json.add.type.headers]": false
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  kafka:
+    bootstrap-servers: "localhost:9092"
+
+  main:
+    allow-bean-definition-overriding: true
+
+kafka:
+  topicPayment: "PAYMENT_TOPIC"
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+  kafka:
+    bootstrap-servers: ${BOOTSTRAP_SERVERS}
+kafka:
+  topicPayment: ${PAYMENT_TOPIC}
