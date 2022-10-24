@@ -21,7 +21,11 @@ spring:
     allow-bean-definition-overriding: true
 
 kafka:
-  topicPayment: "PAYMENT_TOPIC"
+  topic:
+    payment: "PAYMENT_TOPIC"
+    paypal: "PAYPAL_TOPIC"
+    credit: "CREDIT_TOPIC"
+    bank: "BANK_TOPIC"
 ---
 spring:
   config:
@@ -30,4 +34,8 @@ spring:
   kafka:
     bootstrap-servers: ${BOOTSTRAP_SERVERS}
 kafka:
-  topicPayment: ${PAYMENT_TOPIC}
+  topic:
+    payment: ${PAYMENT_TOPIC}
+    paypal: ${PAYPAL_TOPIC}
+    credit: ${CREDIT_TOPIC}
+    bank: ${BANK_TOPIC}

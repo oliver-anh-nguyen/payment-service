@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/topic/payment")
 public class PaymentController {
 
-    @Value("${kafka.topicPayment}")
+    @Value("${kafka.topic.payment}")
     private String topicPayment;
 
     private final PaymentService paymentService;

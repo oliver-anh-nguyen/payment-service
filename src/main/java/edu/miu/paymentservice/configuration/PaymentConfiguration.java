@@ -9,7 +9,7 @@ import org.springframework.kafka.config.TopicBuilder;
 @Configuration
 public class PaymentConfiguration {
 
-    @Value("${kafka.topicPayment}")
+    @Value("${kafka.topic.payment}")
     private String topicPayment;
 
     @Bean

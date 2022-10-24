@@ -34,7 +34,7 @@ public class PaymentServiceImpl implements PaymentService {
     }
 
     @Override
-    @KafkaListener(id = "reserveId", topics = "${kafka.topicPayment}")
+    @KafkaListener(id = "reserveId", topics = "${kafka.topic.payment}")
     public void listen(Payment payment) {
         System.out.println("Received info from topicPayment: " + payment);
         publish(payment.getPaymentType().toUpperCase() + "_TOPIC", payment);
