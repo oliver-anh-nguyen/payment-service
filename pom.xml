@@ -10,7 +10,7 @@
     </parent>
     <groupId>edu.miu</groupId>
     <artifactId>payment-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>sa-payment-service</name>
     <description>payment-service</description>
     <properties>
