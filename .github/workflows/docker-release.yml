@@ -1,0 +1,44 @@
+name: Build Docker on Release
+
+on:
+  release:
+    types: [ published ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: maven
+      - name: Build with Maven
+        run: mvn -B package --file pom.xml
+
+      - name: Execute Maven bootJar
+        run: ./mvnw -q package
+
+      - name: Build the Docker image
+        run: docker build . --file Dockerfile --tag payment-service:${GITHUB_REF#refs/*/}
+
+      - name: Tag image
+        run: docker tag payment-service:${GITHUB_REF#refs/*/} ${{secrets.DOCKER_USER_NAME}}/payment-service:${GITHUB_REF#refs/*/}
+
+      - name: Docker Login
+        env:
+          DOCKER_USER_NAME: ${{secrets.DOCKER_USER_NAME}}
+          DOCKER_PASSWORD: ${{secrets.DOCKER_PASSWORD}}
+        run: |
+          docker login -u $DOCKER_USER_NAME -p $DOCKER_PASSWORD
+
+      - name: List of docker images
+        run: docker image
+
+      - name: Push to Docker Hub
+        run: docker push ${{secrets.DOCKER_USER_NAME}}/payment-service:${GITHUB_REF#refs/*/}
