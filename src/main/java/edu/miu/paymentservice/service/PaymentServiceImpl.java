@@ -40,8 +40,8 @@ public class PaymentServiceImpl implements PaymentService {
             return;
         }
         if (payment.getPaymentType() != null) {
-            System.out.println("Received info from topicPayment: " + payment);
-            publish(payment.getPaymentType().toUpperCase() + "_TOPIC", payment);
+            log.info("Received info from topicPayment: " + payment);
+            publish("${kafka.topic." + payment.getPaymentType().toLowerCase() + "}", payment);
         }
     }
 }
