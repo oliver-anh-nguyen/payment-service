@@ -32,12 +32,12 @@ spring:
     activate:
       on-profile: prod
   kafka:
-    bootstrap-servers: ${BOOTSTRAP_SERVERS}
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER}
   main:
-    allow-bean-definition-overriding: ${ALLOW_BEAN_DEFINITION_OVERRIDING}
+    allow-bean-definition-overriding: ${SPRING_ALLOW_BEAN_DEFINITION_OVERRIDING}
 kafka:
   topic:
-    payment: ${PAYMENT_TOPIC}
-    paypal: ${PAYPAL_TOPIC}
-    credit: ${CREDIT_TOPIC}
-    bank: ${BANK_TOPIC}
+    payment: ${PAYMENT_REQUEST_TOPIC}
+    paypal: ${PAYMENT_PAYPAL_TOPIC}
+    credit: ${PAYMENT_CREDIT_TOPIC}
+    bank: ${BANK_REQUEST_TOPIC}

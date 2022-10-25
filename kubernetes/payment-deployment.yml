@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: payment-service
-          image: anhnt5/payment-service:1.0.3
+          image: anhnt5/payment-service:1.0.4
           env:
             - name: SPRING_PROFILES_ACTIVE
               value: "prod"
