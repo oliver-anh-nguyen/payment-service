@@ -3,6 +3,7 @@ package edu.miu.paymentservice.service;
 import edu.miu.paymentservice.entity.Payment;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -41,7 +42,8 @@ public class PaymentServiceImpl implements PaymentService {
         }
         if (payment.getPaymentType() != null) {
             log.info("Received info from topicPayment: " + payment);
-            publish("${kafka.topic." + payment.getPaymentType().toLowerCase() + "}", payment);
+            String keyTopic = payment.getPaymentType().substring(0,1).toUpperCase() + payment.getPaymentType().substring(1).toLowerCase();
+            publish(keyTopic + "RequestEvent", payment);
         }
     }
 }
