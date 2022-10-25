@@ -25,10 +25,7 @@ jobs:
         run: ./mvnw -q package
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag payment-service:${GITHUB_REF#refs/*/}
-
-      - name: Tag image
-        run: docker tag payment-service:${GITHUB_REF#refs/*/} ${{secrets.DOCKER_USER_NAME}}/payment-service:${GITHUB_REF#refs/*/}
+        run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER_NAME}}/payment-service:1.0.0
 
       - name: Docker Login
         env:
