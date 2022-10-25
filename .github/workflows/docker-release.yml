@@ -25,7 +25,7 @@ jobs:
         run: ./mvnw -q package
 
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER_NAME}}/payment-service:1.0.0
+        run: docker build . --file Dockerfile --tag ${{secrets.DOCKER_USER_NAME}}/payment-service:1.0.1
 
       - name: Docker Login
         env:
