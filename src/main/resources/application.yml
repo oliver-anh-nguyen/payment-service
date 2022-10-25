@@ -33,6 +33,8 @@ spring:
       on-profile: prod
   kafka:
     bootstrap-servers: ${BOOTSTRAP_SERVERS}
+  main:
+    allow-bean-definition-overriding: ${ALLOW_BEAN_DEFINITION_OVERRIDING}
 kafka:
   topic:
     payment: ${PAYMENT_TOPIC}
