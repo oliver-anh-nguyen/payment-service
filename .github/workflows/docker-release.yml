@@ -28,7 +28,7 @@ jobs:
         run: docker build . --file Dockerfile --tag payment-service:${GITHUB_REF#refs/*/}
 
       - name: Tag image
-        run: docker tag bank-service:${GITHUB_REF#refs/*/} ${{secrets.DOCKER_USER_NAME}}/payment-service:${GITHUB_REF#refs/*/}
+        run: docker tag payment-service:${GITHUB_REF#refs/*/} ${{secrets.DOCKER_USER_NAME}}/payment-service:${GITHUB_REF#refs/*/}
 
       - name: Docker Login
         env:
