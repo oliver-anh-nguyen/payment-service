@@ -38,4 +38,4 @@ jobs:
         run: docker image
 
       - name: Push to Docker Hub
-        run: docker push ${{secrets.DOCKER_USER_NAME}}/payment-service:${GITHUB_REF#refs/*/}
+        run: docker push ${{secrets.DOCKER_USER_NAME}}/payment-service:1.0.1
