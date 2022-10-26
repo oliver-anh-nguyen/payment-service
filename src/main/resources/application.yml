@@ -35,6 +35,10 @@ spring:
     bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVER}
   main:
     allow-bean-definition-overriding: ${SPRING_ALLOW_BEAN_DEFINITION_OVERRIDING}
+  zipkin:
+    baseUrl: ${ZIPKIN_SERVER}
+    service:
+      name: ${ZIPKIN_PAYMENT_SERVICE}
 kafka:
   topic:
     payment: ${PAYMENT_REQUEST_TOPIC}
